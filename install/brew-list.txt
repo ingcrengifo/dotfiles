@@ -20,4 +20,6 @@ libpq
 mysql-client
 openjdk
 pulumi
+stripe/stripe-cli/stripe
+terraform
 watch
