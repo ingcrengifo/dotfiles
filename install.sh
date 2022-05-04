@@ -12,6 +12,7 @@ fi
 echo "Cloning zsh Plugins..."
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 # Check for Homebrew and install if we don't have it
 if test ! $(which brew); then
@@ -39,9 +40,9 @@ brew update
 #brew bundle --file $HOME/.dotfiles/Brewfile
 
 # Install all our dependencies
-echo "Installing Brew packages..."
+echo "📦 Installing Brew packages..."
 xargs -n1 -t brew install < $HOME/.dotfiles/install/brew-list.txt
-echo "Installing Brew Cask packages..."
+echo "📦 Installing Brew Cask packages..."
 xargs -n1 -t brew install --cask < $HOME/.dotfiles/install/brew-list-cask.txt
 
 # Clone Github repositories
