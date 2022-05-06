@@ -5,10 +5,10 @@ echo "💻 Setting up your Mac..."
 # Check for Oh My Zsh and install if we don't have it
 #if test ! $(which omz); then
 if [ -d "$ZSH" ]; then
-  printf "Oh My Zsh is already installed. Skipping.."
+  printf "Oh My Zsh is already installed. Skipping...\n"
 else
   printf "📦 Installing Oh My Zsh...\n"
-  /bin/bash -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash
 
   # Clone plugins
   if ! [ -d "$ZSH_CUSTOM/themes/powerlevel10k" ]; then
@@ -31,12 +31,18 @@ else
   else
     echo "zsh-autosuggestions Plugin already installed, skiping...\n"
   fi
+
+  # Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
+  rm $HOME/.zshrc
+  ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
+  ln -s $HOME/.dotfiles/.zprofile $HOME/.zprofile
 fi
 
 # Check for Homebrew and install if we don't have it
 if test ! $(which brew); then
   printf "📦 Installing Homebrew...\n"
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  source ~/.zprofile
 else
   printf "Homebrew is already installed. Skipping....\n"
 fi
@@ -48,10 +54,9 @@ brew update
 echo "Upgrading Brew..."
 brew upgrade
 
-# Removes .zshrc from $HOME (if it exists) and symlinks the .zshrc file from the .dotfiles
-rm $HOME/.zshrc
-ln -s $HOME/.dotfiles/.zshrc $HOME/.zshrc
-ln -s $HOME/.dotfiles/.zprofile $HOME/.zprofile
+echo "Off analytics..."
+brew analytics off
+export HOMEBREW_NO_ANALYTICS=1
 
 # Removes .p10k.zsh from $HOME (if it exists) and symlinks the .p10k.zsh file from the .dotfiles
 rm $HOME/.p10k.zsh
@@ -75,3 +80,9 @@ ln -s $HOME/.dotfiles/.vimrc $HOME/.vimrc
 ln -s $HOME/.dotfiles/.gitconfig $HOME/.gitconfig
 ln -s $HOME/.dotfiles/.gitignore $HOME/.gitignore
 ln -s $HOME/.dotfiles/.tool-versions $HOME/.tool-versions
+ln -s $HOME/.dotfiles/.fzf.zsh $HOME/.fzf.zsh
+
+echo "🧹 Homebrew Cleanup..."
+brew cleanup
+
+echo "Open iTerm2 and type p10k configure to install fonts"
