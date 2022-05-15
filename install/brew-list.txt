@@ -1,6 +1,7 @@
 ansible
 asdf
 awscli
+cocoapods
 dive
 eksctl
 fzf

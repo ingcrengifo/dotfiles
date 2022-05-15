@@ -1,10 +1,17 @@
+android-studio
 bitwarden
+cloudflare-warp
+datagrip
 dbeaver-community
+discord
 docker
+goland
 google-chrome
 iterm2
 lens
 postman
+pycharm
 rectangle
 visual-studio-code
+webstorm
 zoom
