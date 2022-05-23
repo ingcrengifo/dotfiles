@@ -5,6 +5,7 @@ datagrip
 dbeaver-community
 discord
 docker
+flutter
 goland
 google-chrome
 iterm2

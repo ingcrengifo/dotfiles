@@ -9,7 +9,6 @@ gh
 git
 gnupg
 go
-graphviz
 helm
 hugo
 jq
@@ -19,7 +18,6 @@ kubernetes-cli
 kubeseal
 libpq
 mysql-client
-openjdk
 pulumi
 stripe/stripe-cli/stripe
 terraform
