@@ -17,6 +17,7 @@ kubectx
 kubernetes-cli
 kubeseal
 libpq
+locust
 mysql-client
 pulumi
 stripe/stripe-cli/stripe
