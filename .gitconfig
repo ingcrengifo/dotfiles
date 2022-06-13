@@ -5,5 +5,9 @@
 
 [core]
 	excludesFile = /Users/cristianrengifo/.gitignore
+
 [init]
 	defaultBranch = main
+
+[pull]
+  rebase = false

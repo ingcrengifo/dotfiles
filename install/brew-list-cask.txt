@@ -4,6 +4,7 @@ cloudflare-warp
 datagrip
 dbeaver-community
 discord
+drawio
 docker
 flutter
 goland
