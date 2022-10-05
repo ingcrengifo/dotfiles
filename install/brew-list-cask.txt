@@ -1,6 +1,8 @@
+1password
 android-studio
 bitwarden
 cloudflare-warp
+cyberduck
 datagrip
 dbeaver-community
 discord
@@ -9,6 +11,7 @@ docker
 flutter
 goland
 google-chrome
+handbrake
 iterm2
 lens
 meetingbar
@@ -16,5 +19,6 @@ postman
 pycharm
 rectangle
 visual-studio-code
+vlc
 webstorm
 zoom
