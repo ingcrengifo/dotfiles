@@ -9,8 +9,10 @@ gh
 git
 gnupg
 go
+graphviz
 helm
 hugo
+infracost
 jq
 k9s
 kubectx

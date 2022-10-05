@@ -142,3 +142,6 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # Mysql
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+# 
+export USE_GKE_GCLOUD_AUTH_PLUGIN=True

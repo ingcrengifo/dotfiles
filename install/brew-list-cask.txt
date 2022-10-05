@@ -11,6 +11,7 @@ goland
 google-chrome
 iterm2
 lens
+meetingbar
 postman
 pycharm
 rectangle
