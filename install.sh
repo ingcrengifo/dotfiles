@@ -81,6 +81,7 @@ ln -s $HOME/.dotfiles/.gitconfig $HOME/.gitconfig
 ln -s $HOME/.dotfiles/.gitignore $HOME/.gitignore
 ln -s $HOME/.dotfiles/.tool-versions $HOME/.tool-versions
 ln -s $HOME/.dotfiles/.fzf.zsh $HOME/.fzf.zsh
+ln -s $HOME/.dotfiles/.ssh/config $HOME/.ssh/config
 
 echo "🧹 Homebrew Cleanup..."
 brew cleanup
