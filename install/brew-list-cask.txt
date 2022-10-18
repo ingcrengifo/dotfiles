@@ -20,6 +20,7 @@ obs
 postman
 pycharm
 rectangle
+shottr
 visual-studio-code
 vlc
 webstorm
