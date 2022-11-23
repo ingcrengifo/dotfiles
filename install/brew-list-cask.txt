@@ -9,6 +9,7 @@ dbeaver-community
 discord
 drawio
 docker
+figma
 flutter
 goland
 google-chrome
