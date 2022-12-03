@@ -82,7 +82,7 @@ ln -s $HOME/.dotfiles/.gitignore $HOME/.gitignore
 ln -s $HOME/.dotfiles/.tool-versions $HOME/.tool-versions
 ln -s $HOME/.dotfiles/.fzf.zsh $HOME/.fzf.zsh
 #ln -s $HOME/.dotfiles/.ssh/config $HOME/.ssh/config
-ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/CristianRengifo/.ssh ~/.ss
+ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/CristianRengifo/.ssh ~/.ssh
 
 echo "🧹 Homebrew Cleanup..."
 brew cleanup
