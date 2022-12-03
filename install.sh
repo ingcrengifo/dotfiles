@@ -88,3 +88,7 @@ echo "🧹 Homebrew Cleanup..."
 brew cleanup
 
 echo "Open iTerm2 and type p10k configure to install fonts"
+
+echo "When install gcloud run"
+echo "ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/CristianRengifo/.config/gcloud/configurations ~/.config/gcloud/configurations"
+echo "ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/CristianRengifo/.config/gcloud/legacy_credentials/ ~/.config/gcloud/legacy_credentials"
