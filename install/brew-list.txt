@@ -1,6 +1,7 @@
 ansible
 asdf
 awscli
+bat
 cocoapods
 dive
 eksctl
@@ -20,8 +21,10 @@ kubernetes-cli
 kubeseal
 libpq
 locust
+lsd
 mysql-client
 pulumi
+ripsecrets
 stripe/stripe-cli/stripe
 terraform
 watch

@@ -122,6 +122,9 @@ alias kdp='kubectl describe pods'
 alias kdelp='kubectl delete pods'
 alias kgpall='kubectl get pods --all-namespaces -o wide'
 
+# Personal
+alias cat='bat --paging=never --theme="TwoDark"'
+alias ls='lsd'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
