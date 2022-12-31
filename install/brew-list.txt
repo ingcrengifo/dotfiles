@@ -23,8 +23,10 @@ libpq
 locust
 lsd
 mysql-client
+neovim
 pulumi
 ripsecrets
 stripe/stripe-cli/stripe
 terraform
+tree
 watch

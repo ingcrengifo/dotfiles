@@ -83,6 +83,7 @@ ln -s $HOME/.dotfiles/.tool-versions $HOME/.tool-versions
 ln -s $HOME/.dotfiles/.fzf.zsh $HOME/.fzf.zsh
 #ln -s $HOME/.dotfiles/.ssh/config $HOME/.ssh/config
 ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/CristianRengifo/.ssh ~/.ssh
+ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/CristianRengifo/.config/nvim/ ~/.config/nvim
 
 echo "🧹 Homebrew Cleanup..."
 brew cleanup
@@ -92,3 +93,4 @@ echo "Open iTerm2 and type p10k configure to install fonts"
 echo "When install gcloud run"
 echo "ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/CristianRengifo/.config/gcloud/configurations ~/.config/gcloud/configurations"
 echo "ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/CristianRengifo/.config/gcloud/legacy_credentials/ ~/.config/gcloud/legacy_credentials"
+
