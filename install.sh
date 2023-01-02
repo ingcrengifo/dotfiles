@@ -83,7 +83,7 @@ ln -s $HOME/.dotfiles/.tool-versions $HOME/.tool-versions
 ln -s $HOME/.dotfiles/.fzf.zsh $HOME/.fzf.zsh
 #ln -s $HOME/.dotfiles/.ssh/config $HOME/.ssh/config
 ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/CristianRengifo/.ssh ~/.ssh
-ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/CristianRengifo/.config/nvim/ ~/.config/nvim
+ln -s $HOME/.dotfiles/.config/nvim/ ~/.config/nvim
 
 echo "🧹 Homebrew Cleanup..."
 brew cleanup
