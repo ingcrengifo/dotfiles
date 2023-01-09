@@ -15,6 +15,7 @@ goland
 google-chrome
 handbrake
 iterm2
+keepingyouawake
 lens
 meetingbar
 obs

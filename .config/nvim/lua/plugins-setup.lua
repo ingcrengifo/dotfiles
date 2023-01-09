@@ -21,6 +21,14 @@ return require('packer').startup(function(use)
         require('Comment').setup()
     end
   }
+  use { 
+    'nvim-tree/nvim-tree.lua',
+    config = function()
+      require("nvim-tree").setup()
+    end
+  }
+  use 'neovim/nvim-lspconfig' -- Configurations for Nvim LSP
+  use 'feline-nvim/feline.nvim'
 
 
   -- Automatically set up your configuration after cloning packer.nvim
