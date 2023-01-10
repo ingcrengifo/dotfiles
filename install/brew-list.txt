@@ -25,7 +25,9 @@ lsd
 mysql-client
 neovim
 pulumi
+ripgrep
 ripsecrets
+sonar-scanner
 stripe/stripe-cli/stripe
 terraform
 tree
