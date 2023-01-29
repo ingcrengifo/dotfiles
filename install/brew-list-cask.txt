@@ -24,6 +24,7 @@ pycharm
 rectangle
 shottr
 visual-studio-code
+vivaldi
 vlc
 webstorm
 zoom
