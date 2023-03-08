@@ -123,7 +123,7 @@ alias kdelp='kubectl delete pods'
 alias kgpall='kubectl get pods --all-namespaces -o wide'
 
 # Personal
-alias cat='bat --paging=never --theme="TwoDark"'
+#alias cat='bat --paging=never --theme="TwoDark"'
 alias ls='lsd'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -145,6 +145,12 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 
 # Mysql
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
+
+# get zsh complete kubectl
+source <(kubectl completion zsh)
+alias kubectl=kubecolor
+# make completion work with kubecolor
+compdef kubecolor=kubectl
 
 # 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
