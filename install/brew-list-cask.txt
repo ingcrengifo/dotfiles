@@ -1,6 +1,7 @@
 1password
 android-studio
 bitwarden
+bruno
 clickup
 cloudflare-warp
 cyberduck

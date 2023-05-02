@@ -146,5 +146,11 @@ export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 # Mysql
 export PATH="/opt/homebrew/opt/mysql-client/bin:$PATH"
 
+# get zsh complete kubectl
+source <(kubectl completion zsh)
+alias kubectl=kubecolor
+# make completion work with kubecolor
+compdef kubecolor=kubectl
+
 # 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True

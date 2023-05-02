@@ -12,6 +12,7 @@ gnupg
 go
 graphviz
 helm
+hidetatz/tap/kubecolor
 hugo
 infracost
 jq
