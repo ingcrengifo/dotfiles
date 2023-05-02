@@ -18,6 +18,7 @@ handbrake
 iterm2
 keepingyouawake
 lens
+livebook
 meetingbar
 obs
 postman
