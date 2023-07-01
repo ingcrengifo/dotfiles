@@ -84,6 +84,8 @@ ln -s $HOME/.dotfiles/.fzf.zsh $HOME/.fzf.zsh
 #ln -s $HOME/.dotfiles/.ssh/config $HOME/.ssh/config
 ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/CristianRengifo/.ssh ~/.ssh
 ln -s $HOME/.dotfiles/.config/nvim/ ~/.config/nvim
+# Work Symlinks
+ln -s ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/CristianRengifo/Work/CapturaTuMundo/Terraform/Prod/.auto.tfvars ~/Developments/Personal/CapturaTuMundo/infra/environments/prod/.auto.tfvars
 
 echo "🧹 Homebrew Cleanup..."
 brew cleanup
