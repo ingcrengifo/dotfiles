@@ -21,8 +21,11 @@ iterm2
 keepingyouawake
 lens
 livebook
+maccy
 meetingbar
+monitorcontrol
 obs
+obsidian
 postman
 pycharm
 rectangle
