@@ -30,6 +30,7 @@ postman
 pycharm
 rectangle
 shottr
+stats
 visual-studio-code
 vivaldi
 vlc
