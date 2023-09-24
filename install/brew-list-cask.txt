@@ -31,6 +31,7 @@ pycharm
 rectangle
 shottr
 stats
+telegram
 visual-studio-code
 vivaldi
 vlc
