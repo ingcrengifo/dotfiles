@@ -3,7 +3,6 @@ android-studio
 arc
 bitwarden
 bruno
-clickup
 cloudflare-warp
 cyberduck
 datagrip
