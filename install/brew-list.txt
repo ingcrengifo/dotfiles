@@ -5,10 +5,12 @@ bat
 cocoapods
 dive
 eksctl
+fd
 fzf
 gh
 git
 gnupg
+gnu-sed
 go
 graphviz
 helm
@@ -20,6 +22,7 @@ k9s
 kubectx
 kubernetes-cli
 kubeseal
+lazygit
 libpq
 locust
 lsd
@@ -33,3 +36,4 @@ stripe/stripe-cli/stripe
 terraform
 tree
 watch
+wget
