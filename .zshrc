@@ -156,3 +156,5 @@ compdef kubecolor=kubectl
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 export PATH="/opt/homebrew/bin/hadolint:$PATH"
+
+eval "$(atuin init zsh)"
