@@ -10,6 +10,7 @@ docker
 figma
 google-chrome
 iterm2
+jordanbaird-ice
 keepingyouawake
 lens
 livebook
