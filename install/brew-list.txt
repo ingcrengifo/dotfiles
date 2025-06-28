@@ -28,6 +28,7 @@ locust
 lsd
 mysql-client
 neovim
+poetry
 pulumi
 ripgrep
 ripsecrets

@@ -22,6 +22,7 @@ obsidian
 postman
 rectangle
 shottr
+slack
 stats
 telegram
 visual-studio-code
