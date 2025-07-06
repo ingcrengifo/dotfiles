@@ -33,7 +33,6 @@ pulumi
 ripgrep
 ripsecrets
 sonar-scanner
-stripe/stripe-cli/stripe
 terraform
 tree
 watch
