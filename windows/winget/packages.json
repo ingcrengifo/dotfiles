@@ -20,6 +20,8 @@
         { "PackageIdentifier": "Notepad++.Notepad++" },
         { "PackageIdentifier": "DBeaver.DBeaver.Community" },
         { "PackageIdentifier": "Postman.Postman" },
+	{ "PackageIdentifier": "JanDeDobbeleer.OhMyPosh" },
+	{ "PackageIdentifier": "Anthropic.ClaudeCode" },
         { "PackageIdentifier": "WinSCP.WinSCP" }
       ],
       "SourceDetails": {
