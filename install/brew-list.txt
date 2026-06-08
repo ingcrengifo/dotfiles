@@ -1,5 +1,6 @@
 ansible
 asdf
+atuin
 awscli
 bat
 cocoapods

@@ -158,3 +158,4 @@ export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 export PATH="/opt/homebrew/bin/hadolint:$PATH"
 
 eval "$(atuin init zsh)"
+export SONAR_TOKEN=sqa_197b43181c840787d7a6b7c01d4b844d8511a633
