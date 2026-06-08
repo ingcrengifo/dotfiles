@@ -2,22 +2,23 @@
 
 [![Test dotfiles on macOS](https://github.com/INGCRENGIFO/dotfiles/actions/workflows/test_dotfiles.yml/badge.svg)](https://github.com/INGCRENGIFO/dotfiles/actions/workflows/test_dotfiles.yml)
 
-### Setting up your Mac
+Personal dotfiles for macOS and Windows workstations.
 
-1. [Generate a new public and private SSH key](https://docs.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) by running:
+## Repository Structure
 
-```zsh
-curl https://raw.githubusercontent.com/INGCRENGIFO/dotfiles/HEAD/ssh.sh | sh -s "<your-email-address>"
-```
-
-2. Clone this repo to `~/.dotfiles` with:
-
-```zsh
-git clone git@github.com:INGCRENGIFO/dotfiles.git ~/.dotfiles
-```
-
-3. Run the installation with:
-
-```zsh
-~/.dotfiles/install.sh
-```
+```text
+.dotfiles/
+├── common/
+│   ├── git/
+│   ├── vim/
+│   └── tool-versions/
+├── macos/
+│   ├── install.sh
+│   ├── ssh.sh
+│   ├── zsh/
+│   └── install/
+└── windows/
+    ├── install.ps1
+    ├── ssh.ps1
+    ├── winget/
+    └── powershell/

@@ -63,12 +63,34 @@ export HOMEBREW_NO_ANALYTICS=1
 
 echo "📦 Installing Brew packages..."
 if [ -f "$DOTFILES_DIR/macos/install/brew-list.txt" ]; then
-  xargs -n1 -t brew install < "$DOTFILES_DIR/macos/install/brew-list.txt"
+  while IFS= read -r package || [ -n "$package" ]; do
+    [ -z "$package" ] && continue
+    [[ "$package" =~ ^# ]] && continue
+
+    echo "Installing formula: $package"
+
+    if brew list --formula "$package" >/dev/null 2>&1; then
+      echo "$package is already installed. Skipping..."
+    else
+      brew install "$package" || echo "Warning: failed to install formula $package. Continuing..."
+    fi
+  done < "$DOTFILES_DIR/macos/install/brew-list.txt"
 fi
 
 echo "📦 Installing Brew Cask packages..."
 if [ -f "$DOTFILES_DIR/macos/install/brew-list-cask.txt" ]; then
-  xargs -n1 -t brew install --cask < "$DOTFILES_DIR/macos/install/brew-list-cask.txt"
+  while IFS= read -r cask || [ -n "$cask" ]; do
+    [ -z "$cask" ] && continue
+    [[ "$cask" =~ ^# ]] && continue
+
+    echo "Installing cask: $cask"
+
+    if brew list --cask "$cask" >/dev/null 2>&1; then
+      echo "$cask is already installed. Skipping..."
+    else
+      brew install --cask "$cask" || echo "Warning: failed to install cask $cask. Continuing..."
+    fi
+  done < "$DOTFILES_DIR/macos/install/brew-list-cask.txt"
 fi
 
 echo "🔗 Creating symlinks..."
