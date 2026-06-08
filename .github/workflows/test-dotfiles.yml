@@ -1,0 +1,89 @@
+name: Test dotfiles
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - master
+      - restructure/multiplatform-dotfiles
+
+jobs:
+  test-macos-scripts:
+    name: Test macOS scripts
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate bash syntax
+        run: |
+          bash -n macos/install.sh
+          bash -n macos/ssh.sh
+
+      - name: Validate required macOS files
+        run: |
+          test -f macos/install.sh
+          test -f macos/ssh.sh
+          test -f macos/zsh/.zshrc
+          test -f macos/zsh/.zprofile
+          test -f common/git/.gitconfig
+          test -f common/git/.gitignore
+
+  test-windows-scripts:
+    name: Test Windows scripts
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Validate PowerShell syntax
+        shell: pwsh
+        run: |
+          $errors = $null
+
+          [System.Management.Automation.PSParser]::Tokenize((Get-Content windows/install.ps1 -Raw), [ref]$errors) | Out-Null
+          if ($errors.Count -gt 0) { throw "Syntax error in windows/install.ps1" }
+
+          [System.Management.Automation.PSParser]::Tokenize((Get-Content windows/ssh.ps1 -Raw), [ref]$errors) | Out-Null
+          if ($errors.Count -gt 0) { throw "Syntax error in windows/ssh.ps1" }
+
+          [System.Management.Automation.PSParser]::Tokenize((Get-Content windows/powershell/Microsoft.PowerShell_profile.ps1 -Raw), [ref]$errors) | Out-Null
+          if ($errors.Count -gt 0) { throw "Syntax error in Windows PowerShell profile" }
+
+      - name: Validate required Windows files
+        shell: pwsh
+        run: |
+          $requiredFiles = @(
+            "windows/install.ps1",
+            "windows/ssh.ps1",
+            "windows/winget/packages.json",
+            "windows/powershell/Microsoft.PowerShell_profile.ps1"
+          )
+
+          foreach ($file in $requiredFiles) {
+            if (-not (Test-Path $file)) {
+              throw "Missing required file: $file"
+            }
+          }
+
+      - name: Validate winget JSON
+        shell: pwsh
+        run: |
+          Get-Content windows/winget/packages.json -Raw | ConvertFrom-Json | Out-Null
+
+  security-check:
+    name: Security checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check for private keys
+        run: |
+          ! grep -R "BEGIN OPENSSH PRIVATE KEY" .
+          ! grep -R "BEGIN RSA PRIVATE KEY" .
+          ! grep -R "BEGIN PRIVATE KEY" .
