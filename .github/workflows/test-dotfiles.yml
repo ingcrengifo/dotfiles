@@ -84,6 +84,12 @@ jobs:
 
       - name: Check for private keys
         run: |
-          ! grep -R "BEGIN OPENSSH PRIVATE KEY" .
-          ! grep -R "BEGIN RSA PRIVATE KEY" .
-          ! grep -R "BEGIN PRIVATE KEY" .
+          if grep -R \
+            --exclude-dir=.git \
+            --exclude=".github/workflows/test-dotfiles.yml" \
+            -E "BEGIN (OPENSSH|RSA|PRIVATE) PRIVATE KEY" .; then
+            echo "Private key detected."
+            exit 1
+          fi
+
+          echo "No private keys detected."
