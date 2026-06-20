@@ -1,5 +1,10 @@
 #Requires -Version 7.0
 
+param(
+    [switch]$InstallFont,
+    [string]$NerdFont = "Meslo"
+)
+
 $ErrorActionPreference = "Stop"
 
 $DotfilesDir = Resolve-Path (Join-Path $PSScriptRoot "..")
@@ -20,6 +25,17 @@ if (Test-Path $PackagesFile) {
 
 Write-Host "==> Upgrading installed packages..."
 winget upgrade --all --accept-package-agreements --accept-source-agreements
+
+if ($InstallFont) {
+    Write-Host "==> Installing Nerd Font for Oh My Posh..."
+
+    if (Get-Command oh-my-posh -ErrorAction SilentlyContinue) {
+        oh-my-posh font install $NerdFont
+    } else {
+        Write-Host "Oh My Posh was not found on PATH. Restart your terminal and run:"
+        Write-Host "oh-my-posh font install $NerdFont"
+    }
+}
 
 Write-Host "==> Creating PowerShell profile..."
 
@@ -42,3 +58,4 @@ if (Test-Path $KeyPath) {
 Write-Host ""
 Write-Host "✅ Windows setup completed."
 Write-Host "Restart your terminal before validating all commands."
+Write-Host "If you installed a Nerd Font, set Windows Terminal and VS Code to use MesloLGM Nerd Font."

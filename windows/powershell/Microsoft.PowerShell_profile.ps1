@@ -1,8 +1,23 @@
 # PowerShell profile managed by ~/.dotfiles
 
-Set-PSReadLineOption -EditMode Windows
-Set-PSReadLineOption -PredictionSource History
-Set-PSReadLineOption -PredictionViewStyle ListView
+function Set-OptionalPSReadLineOption {
+    param(
+        [Parameter(Mandatory = $true)]
+        [hashtable]$Options
+    )
+
+    if (Get-Command Set-PSReadLineOption -ErrorAction SilentlyContinue) {
+        try {
+            Set-PSReadLineOption @Options
+        } catch {
+            # Some hosts load profiles without a full interactive console.
+        }
+    }
+}
+
+Set-OptionalPSReadLineOption @{ EditMode = "Windows" }
+Set-OptionalPSReadLineOption @{ PredictionSource = "History" }
+Set-OptionalPSReadLineOption @{ PredictionViewStyle = "ListView" }
 
 Set-Alias ll Get-ChildItem
 Set-Alias g git
@@ -22,3 +37,9 @@ function reload-profile {
 }
 
 $env:EDITOR = "code"
+
+$OhMyPoshTheme = Join-Path $HOME ".dotfiles\windows\oh-my-posh\cristian.omp.json"
+
+if ((Get-Command oh-my-posh -ErrorAction SilentlyContinue) -and (Test-Path $OhMyPoshTheme)) {
+    oh-my-posh init pwsh --config $OhMyPoshTheme | Invoke-Expression
+}

@@ -20,5 +20,23 @@ Personal dotfiles for macOS and Windows workstations.
 └── windows/
     ├── install.ps1
     ├── ssh.ps1
+    ├── oh-my-posh/
     ├── winget/
     └── powershell/
+```
+
+## Windows
+
+Run the installer from PowerShell 7:
+
+```powershell
+.\windows\install.ps1
+```
+
+To install the recommended Nerd Font for Oh My Posh:
+
+```powershell
+.\windows\install.ps1 -InstallFont
+```
+
+After installing the font, configure Windows Terminal and VS Code to use `MesloLGM Nerd Font`.
