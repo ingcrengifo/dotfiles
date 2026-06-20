@@ -4,7 +4,7 @@
 	email = ingcrengifo@gmail.com
 
 [core]
-	excludesFile = /Users/cristianrengifo/.gitignore
+	excludesFile = ~/.gitignore
 
 [init]
 	defaultBranch = main

@@ -10,7 +10,6 @@ $ErrorActionPreference = "Stop"
 $DotfilesDir = Resolve-Path (Join-Path $PSScriptRoot "..")
 $PackagesFile = Join-Path $PSScriptRoot "winget\packages.json"
 $PowerShellProfileSource = Join-Path $PSScriptRoot "powershell\Microsoft.PowerShell_profile.ps1"
-$WindowsGitConfigSource = Join-Path $PSScriptRoot "git\.gitconfig"
 $VSCodeSettingsSource = Join-Path $PSScriptRoot "vscode\settings.json"
 
 function Copy-Dotfile {
@@ -204,7 +203,7 @@ Copy-Dotfile $PowerShellProfileSource $PROFILE.CurrentUserCurrentHost
 
 Write-Host "==> Installing common dotfiles..."
 
-Copy-Dotfile $WindowsGitConfigSource (Join-Path $HOME ".gitconfig")
+Copy-Dotfile (Join-Path $DotfilesDir "common\git\.gitconfig") (Join-Path $HOME ".gitconfig")
 Copy-Dotfile (Join-Path $DotfilesDir "common\git\.gitignore") (Join-Path $HOME ".gitignore")
 Copy-Dotfile (Join-Path $DotfilesDir "common\vim\.vimrc") (Join-Path $HOME ".vimrc")
 Copy-Dotfile (Join-Path $DotfilesDir "common\tool-versions\.tool-versions") (Join-Path $HOME ".tool-versions")

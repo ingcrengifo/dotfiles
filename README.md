@@ -20,7 +20,6 @@ Personal dotfiles for macOS and Windows workstations.
 └── windows/
     ├── install.ps1
     ├── ssh.ps1
-    ├── git/
     ├── oh-my-posh/
     ├── vscode/
     ├── winget/
@@ -45,7 +44,7 @@ After installing the font, restart Windows Terminal. The installer configures Wi
 
 The Windows installer also applies:
 
-- Git user defaults from `windows/git/.gitconfig`.
+- Git user defaults from `common/git/.gitconfig`.
 - Shared dotfiles from `common/`.
 - Neovim config to `%LOCALAPPDATA%\nvim`.
 - PowerShell profile with Oh My Posh.
