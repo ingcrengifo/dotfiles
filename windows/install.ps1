@@ -168,17 +168,80 @@ function Update-WindowsTerminalSettings {
     }
 }
 
+function Install-WingetPackages {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$PackagesPath
+    )
+
+    if (-not (Test-Path $PackagesPath)) {
+        Write-Host "Winget packages file not found: $PackagesPath"
+        return
+    }
+
+    try {
+        $PackageManifest = Get-Content $PackagesPath -Raw | ConvertFrom-Json
+    } catch {
+        Write-Host "Invalid winget packages file: $PackagesPath"
+        return
+    }
+
+    $PackageIds = @(
+        foreach ($Source in @($PackageManifest.Sources)) {
+            foreach ($Package in @($Source.Packages)) {
+                $Package.PackageIdentifier
+            }
+        }
+    ) | Where-Object { $_ } | Select-Object -Unique
+
+    $FailedPackages = @()
+
+    foreach ($PackageId in $PackageIds) {
+        Write-Host "==> Checking $PackageId..."
+
+        winget list `
+            --id $PackageId `
+            --exact `
+            --source winget `
+            --disable-interactivity | Out-Null
+
+        if ($LASTEXITCODE -eq 0) {
+            Write-Host "$PackageId is already installed. Skipping..."
+            continue
+        }
+
+        Write-Host "Installing $PackageId..."
+
+        winget install `
+            --id $PackageId `
+            --exact `
+            --source winget `
+            --accept-package-agreements `
+            --accept-source-agreements `
+            --disable-interactivity
+
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "Warning: failed to install $PackageId. Continuing..."
+            $FailedPackages += $PackageId
+        }
+    }
+
+    if ($FailedPackages.Count -gt 0) {
+        Write-Host ""
+        Write-Host "Winget packages that need manual review:"
+        foreach ($PackageId in $FailedPackages) {
+            Write-Host "- $PackageId"
+        }
+    }
+}
+
 Write-Host "==> Setting up Windows workstation..."
 
 Write-Host "==> Updating winget sources..."
 winget source update
 
-if (Test-Path $PackagesFile) {
-    Write-Host "==> Installing packages from winget..."
-    winget import -i $PackagesFile --accept-package-agreements --accept-source-agreements
-} else {
-    Write-Host "Winget packages file not found: $PackagesFile"
-}
+Write-Host "==> Installing packages from winget..."
+Install-WingetPackages $PackagesFile
 
 Write-Host "==> Upgrading installed packages..."
 winget upgrade --all --accept-package-agreements --accept-source-agreements
