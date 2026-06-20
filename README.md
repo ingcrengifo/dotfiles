@@ -20,7 +20,9 @@ Personal dotfiles for macOS and Windows workstations.
 └── windows/
     ├── install.ps1
     ├── ssh.ps1
+    ├── git/
     ├── oh-my-posh/
+    ├── vscode/
     ├── winget/
     └── powershell/
 ```
@@ -39,4 +41,13 @@ To install the recommended Nerd Font for Oh My Posh:
 .\windows\install.ps1 -InstallFont
 ```
 
-After installing the font, configure Windows Terminal and VS Code to use `MesloLGM Nerd Font`.
+After installing the font, restart Windows Terminal. The installer configures Windows Terminal and VS Code to use `MesloLGM Nerd Font` when their settings files are available.
+
+The Windows installer also applies:
+
+- Git user defaults from `windows/git/.gitconfig`.
+- Shared dotfiles from `common/`.
+- Neovim config to `%LOCALAPPDATA%\nvim`.
+- PowerShell profile with Oh My Posh.
+- VS Code terminal settings.
+- Windows Terminal default profile and font when its settings file exists.

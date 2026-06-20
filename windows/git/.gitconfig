@@ -1,0 +1,12 @@
+[user]
+	name = Cristian Rengifo
+	email = ingcrengifo@gmail.com
+
+[core]
+	excludesFile = ~/.gitignore
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = false
