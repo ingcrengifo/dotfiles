@@ -186,23 +186,35 @@ function Install-WingetPackages {
         return
     }
 
-    $PackageIds = @(
+    $PackageRefs = @(
         foreach ($Source in @($PackageManifest.Sources)) {
+            $SourceName = $Source.SourceDetails.Name
+
+            if (-not $SourceName) {
+                $SourceName = "winget"
+            }
+
             foreach ($Package in @($Source.Packages)) {
-                $Package.PackageIdentifier
+                [pscustomobject]@{
+                    PackageId = $Package.PackageIdentifier
+                    Source = $SourceName
+                }
             }
         }
-    ) | Where-Object { $_ } | Select-Object -Unique
+    ) | Where-Object { $_.PackageId } | Sort-Object PackageId, Source -Unique
 
     $FailedPackages = @()
 
-    foreach ($PackageId in $PackageIds) {
-        Write-Host "==> Checking $PackageId..."
+    foreach ($PackageRef in $PackageRefs) {
+        $PackageId = $PackageRef.PackageId
+        $SourceName = $PackageRef.Source
+
+        Write-Host "==> Checking $PackageId from $SourceName..."
 
         winget list `
             --id $PackageId `
             --exact `
-            --source winget `
+            --source $SourceName `
             --disable-interactivity | Out-Null
 
         if ($LASTEXITCODE -eq 0) {
@@ -210,19 +222,19 @@ function Install-WingetPackages {
             continue
         }
 
-        Write-Host "Installing $PackageId..."
+        Write-Host "Installing $PackageId from $SourceName..."
 
         winget install `
             --id $PackageId `
             --exact `
-            --source winget `
+            --source $SourceName `
             --accept-package-agreements `
             --accept-source-agreements `
             --disable-interactivity
 
         if ($LASTEXITCODE -ne 0) {
             Write-Host "Warning: failed to install $PackageId. Continuing..."
-            $FailedPackages += $PackageId
+            $FailedPackages += "$PackageId ($SourceName)"
         }
     }
 
