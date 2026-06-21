@@ -43,3 +43,7 @@ $OhMyPoshTheme = Join-Path $HOME ".dotfiles\windows\oh-my-posh\cristian.omp.json
 if ((Get-Command oh-my-posh -ErrorAction SilentlyContinue) -and (Test-Path $OhMyPoshTheme)) {
     oh-my-posh init pwsh --config $OhMyPoshTheme | Invoke-Expression
 }
+
+if (Get-Command mise -ErrorAction SilentlyContinue) {
+    mise activate pwsh | Out-String | Invoke-Expression
+}

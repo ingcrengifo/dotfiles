@@ -247,6 +247,33 @@ function Install-WingetPackages {
     }
 }
 
+function Install-MiseTools {
+    $ToolVersionsFile = Join-Path $HOME ".tool-versions"
+
+    if (-not (Get-Command mise -ErrorAction SilentlyContinue)) {
+        Write-Host "mise is not available on PATH yet. Restart your terminal and run: mise install"
+        return
+    }
+
+    if (-not (Test-Path $ToolVersionsFile)) {
+        Write-Host "No .tool-versions found at $ToolVersionsFile"
+        return
+    }
+
+    Write-Host "==> Installing tools from .tool-versions with mise..."
+
+    Push-Location $HOME
+    try {
+        mise install
+
+        if ($LASTEXITCODE -ne 0) {
+            Write-Host "Warning: mise install reported issues. Review the output and run mise install manually if needed."
+        }
+    } finally {
+        Pop-Location
+    }
+}
+
 Write-Host "==> Setting up Windows workstation..."
 
 Write-Host "==> Updating winget sources..."
@@ -283,6 +310,8 @@ Copy-Dotfile (Join-Path $DotfilesDir "common\git\.gitignore") (Join-Path $HOME "
 Copy-Dotfile (Join-Path $DotfilesDir "common\vim\.vimrc") (Join-Path $HOME ".vimrc")
 Copy-Dotfile (Join-Path $DotfilesDir "common\tool-versions\.tool-versions") (Join-Path $HOME ".tool-versions")
 Copy-DotfileDirectory (Join-Path $DotfilesDir ".config\nvim") (Join-Path $env:LOCALAPPDATA "nvim")
+
+Install-MiseTools
 
 Write-Host "==> Configuring Git SSH command for this repo..."
 
