@@ -44,6 +44,8 @@
         { "PackageIdentifier": "DBeaver.DBeaver.Community" },
         { "PackageIdentifier": "Postman.Postman" },
         { "PackageIdentifier": "JanDeDobbeleer.OhMyPosh" },
+        { "PackageIdentifier": "OpenAI.Codex" },
+        { "PackageIdentifier": "Anthropic.Claude" },
         { "PackageIdentifier": "Anthropic.ClaudeCode" },
         { "PackageIdentifier": "WinSCP.WinSCP" }
       ],
