@@ -42,8 +42,50 @@ $OhMyPoshTheme = Join-Path $HOME ".dotfiles\windows\oh-my-posh\cristian.omp.json
 
 if ((Get-Command oh-my-posh -ErrorAction SilentlyContinue) -and (Test-Path $OhMyPoshTheme)) {
     oh-my-posh init pwsh --config $OhMyPoshTheme | Invoke-Expression
+
+    $global:OhMyPoshPromptRenderer = $Function:prompt
+    $global:OhMyPoshPromptOutput = $null
+    $global:OhMyPoshPromptHistoryId = $null
+    $global:OhMyPoshPromptLocation = $null
+
+    function global:prompt {
+        $OriginalStatus = $?
+        $LastHistory = Get-History -Count 1 -ErrorAction Ignore
+        $HistoryId = if ($LastHistory) { $LastHistory.Id } else { 0 }
+        $Location = $PWD.ToString()
+
+        if (
+            $null -ne $global:OhMyPoshPromptOutput -and
+            $HistoryId -eq $global:OhMyPoshPromptHistoryId -and
+            $Location -eq $global:OhMyPoshPromptLocation
+        ) {
+            return $global:OhMyPoshPromptOutput
+        }
+
+        $HadOriginalStatus = Test-Path Variable:global:NVS_ORIGINAL_LASTEXECUTIONSTATUS
+        $PreviousOriginalStatus = $global:NVS_ORIGINAL_LASTEXECUTIONSTATUS
+        $global:NVS_ORIGINAL_LASTEXECUTIONSTATUS = $OriginalStatus
+
+        try {
+            $Output = & $global:OhMyPoshPromptRenderer
+        } finally {
+            if ($HadOriginalStatus) {
+                $global:NVS_ORIGINAL_LASTEXECUTIONSTATUS = $PreviousOriginalStatus
+            } else {
+                Remove-Variable NVS_ORIGINAL_LASTEXECUTIONSTATUS -Scope Global -ErrorAction Ignore
+            }
+        }
+
+        $global:OhMyPoshPromptOutput = $Output
+        $global:OhMyPoshPromptHistoryId = $HistoryId
+        $global:OhMyPoshPromptLocation = $Location
+
+        return $Output
+    }
 }
 
-if (Get-Command mise -ErrorAction SilentlyContinue) {
-    mise activate pwsh | Out-String | Invoke-Expression
+$MiseShims = Join-Path $env:LOCALAPPDATA "mise\shims"
+
+if ((Test-Path $MiseShims) -and (($env:Path -split ";") -notcontains $MiseShims)) {
+    $env:Path = "$MiseShims;$env:Path"
 }
